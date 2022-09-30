@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  mssql:
+    hostname: mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Mely12345"
+    ports: 
+      - "18333:1433"
+
+  api:
+    hostname: api
+    image: apiproyecto:latest
+    depends_on:
+      - mssql
+    ports: 
+      - "8080:80"		
+          
